@@ -118,12 +118,10 @@ def submit(request, course_id):
 
     if enrollment_object and submitted_choices_ids:
         submission = Submission.objects.create(enrollment = enrollment_object)
-        print(submission)
-        # for answer in submitted_choices_ids:
-        #     choice = get_object_or_404(Choice, pk=answer)
-        #     print(choice)
-        #     submission.choices.add(choice)
-
+        for a in submitted_choices_ids:
+            temp_c = Choice.objects.filter(id = int(a)).get()
+            submission.choices.add(temp_c)
+        submission.save()
 
     return HttpResponseRedirect(reverse(viewname='onlinecourse:show_exam_result', args=(course_id, submission.id)))
 
@@ -148,13 +146,24 @@ def extract_answers(request):
 def show_exam_result(request, course_id, submission_id):
     submission = get_object_or_404(Submission, pk=submission_id)
     course = get_object_or_404(Course, pk=course_id)
-    print(submission.choices)
+    total_true_answers = 0
+    total_true_submited = 0
+
+    for c in submission.choices.filter(is_correct=True):
+        total_true_submited += 1
+
+    for q in course.question_set.all():
+        for c in q.choice_set.filter(is_correct=True):
+            total_true_answers += 1
+    
+    grade = total_true_submited / total_true_answers
+
 
     context = {
-        'grade': 90,
-        'submission_id':1,
+        'grade': int(grade*100),
+        'submission_id':submission_id,
         'course':{
-            'id':1
+            'id':course_id
         }
     }
     return render(request, 'onlinecourse/exam_result_bootstrap.html', context)
