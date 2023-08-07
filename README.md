@@ -6,10 +6,13 @@ This project is a django app for online courses that you can login and enroll to
 There are some uncompleted functionality, but it has the main structure.
 
 ## How to run
-After cloning the app you need to install the requirements from requirements.txt then run it with python:
+- Clone the app
 
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py runserver
+- Install the requirements from requirements.txt
+
+Then run it with python:
+- python3 manage.py makemigrations
+- python3 manage.py migrate
+- python3 manage.py runserver
 
 Then open `/onlinecourse` route in your host.
