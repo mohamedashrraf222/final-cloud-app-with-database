@@ -1,15 +1,15 @@
+# Django online courses app
 
-**General Notes**
+## Description
+This project is a django app for online courses that you can login and enroll to the courses and take exams. Created from starter code repository that was forked from IBM. There are many functions and classes in view.py to handle diffrent routes in urls.py  
 
-An `onlinecourse` app has already been provided in this repo upon which you will be adding a new assesement feature.
+There are some uncompleted functionality, but it has the main structure.
 
-- If you want to develop the final project on Theia hosted by [IBM Developer Skills Network](https://labs.cognitiveclass.ai/), you will need to create the same project structure on Theia workspace and save it everytime you close the browser
-- Or you could develop the final project locally by setting up your own Python runtime and IDE
-- Hints for the final project are left on source code files
-- You may choose any cloud platform for deployment (default is IBM Cloud Foundry)
-- Depends on your deployment, you may choose any SQL database Django supported such as SQLite3, PostgreSQL, and MySQL (default is SQLite3)
+## How to run
+After cloning the app you need to install the requirements from requirements.txt then run it with python:
 
-**ER Diagram**
-For your reference, we have prepared the ER diagram design for the new assesement feature.
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py runserver
 
-![Onlinecourse ER Diagram](https://github.com/ibm-developer-skills-network/final-cloud-app-with-database/blob/master/static/media/course_images/onlinecourse_app_er.png)
+Then open `/onlinecourse` route in your host.
